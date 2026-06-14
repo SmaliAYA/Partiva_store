@@ -1,27 +1,42 @@
 FROM php:8.4-cli
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     zip \
+    curl \
     libzip-dev \
     libpng-dev \
     libonig-dev \
-    libxml2-dev \
-    curl \
-    && docker-php-ext-install \
+    libxml2-dev
+
+# Install PHP extensions
+RUN docker-php-ext-install \
     pdo \
     pdo_mysql \
-    zip
+    mbstring \
+    zip \
+    exif \
+    pcntl
 
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Set working directory
 WORKDIR /app
 
+# Copy project files
 COPY . .
 
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-EXPOSE 8000
+# Laravel permissions (important on Railway)
+RUN chmod -R 775 storage bootstrap/cache
 
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+# Expose port (Railway uses PORT env)
+EXPOSE 8080
+
+# Cache config at runtime (env vars are available here), then run migrations, then start server
+CMD ["sh", "-c", "echo '>>> CONFIG CACHE' && php artisan config:cache && echo '>>> RUNNING MIGRATIONS' && php artisan migrate --force && echo '>>> MIGRATIONS DONE' && echo '>>> STARTING SERVER' && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"]
