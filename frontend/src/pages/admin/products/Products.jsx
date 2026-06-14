@@ -57,7 +57,7 @@ export default function Products() {
         </h1>
 
         <Link
-          to="/products/create"
+          to="/admin/products/create"
           className="bg-blue-600 text-white px-4 py-2 rounded"
         >
           + Create Product
@@ -88,7 +88,7 @@ export default function Products() {
                 <div className="flex gap-3 items-center">
 
                   <Link
-                    to={`/products/edit/${p.id}`}
+                    to={`/admin/products/edit/${p.id}`}
                     className="text-blue-600"
                   >
                     Edit

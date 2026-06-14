@@ -29,6 +29,9 @@ export default function Edit() {
           getProduct(id),
           getCategories(),
         ]);
+        console.log('product:', productRes);      // ✅ ajoute
+      console.log('categories:', categoriesRes); // ✅ ajoute
+
         const p = productRes.data;
         setForm({
           name: p.name || '',
@@ -40,14 +43,15 @@ export default function Edit() {
           image: null,
         });
         setPreview(p.image || null);
-        setCategories(categoriesRes.data);
-      } catch {
-        alert('Erreur lors du chargement du produit.');
-        navigate('/admin/products');
-      } finally {
-        setFetching(false);
-      }
+        setCategories(categoriesRes.data || categoriesRes || []);
+      } catch (err) {
+      console.log('ERREUR:', err); // ✅ ajoute
+      alert('Erreur lors du chargement du produit.');
+      navigate('/admin/products');
+    } finally {
+      setFetching(false);
     }
+  }
     load();
   }, [id]);
 

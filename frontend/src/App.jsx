@@ -20,43 +20,18 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path="/" element={<Home />} />
 
         {/* Auth */}
         <Route path="/login" element={<Login />} />
+        <Route path="/admin/login" element={<Login />} />
 
-        {/* Admin protected routes */}
-        <Route
-          path="/admin/products"
-          element={
-            <AdminRoute>
-              <Products />
-            </AdminRoute>
-          }
-        />
-
-        <Route
-          path="/products/create"
-          element={
-            <AdminRoute>
-              <Create />
-            </AdminRoute>
-          }
-        />
-
-        <Route
-          path="/products/edit/:id"
-          element={
-            <AdminRoute>
-              <Edit />
-            </AdminRoute>
-          }
-        />
-
+        {/* Admin */}
+        <Route path="/admin/products/create" element={<AdminRoute><Create /></AdminRoute>} />
+        <Route path="/admin/products" element={<AdminRoute><Products /></AdminRoute>} />
+        <Route path="/admin/products/edit/:id" element={<AdminRoute><Edit /></AdminRoute>} />
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;

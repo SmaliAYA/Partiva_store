@@ -30,7 +30,7 @@ const handleLogin = async (e) => {
     localStorage.setItem("user", JSON.stringify(res.data.user)); // ← ligne manquante
 
     // redirect to create product
-    navigate("/admin/products/create"); // ← change aussi ici
+    navigate("/admin/products"); // ← change aussi ici
 
   } catch (error) {
     setError(

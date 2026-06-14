@@ -628,9 +628,19 @@ function Home() {
                 <li>+212 5XX-XXX-XXX</li>
               </ul>
  <div className="flex gap-3 mt-6">
-  <a href="https://wa.me/212608455439" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#25D366] transition-colors" aria-label="WhatsApp">
-    <MessageCircle className="w-5 h-5" />
-  </a>
+<a
+  href="https://wa.me/212671423516?text=Hello%20Partiva,%20I%20would%20like%20to%20know%20more%20about%20your%20products%20and%20services."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-8 left-8 z-50 flex items-center gap-3 bg-[#25D366] text-white px-5 py-3 rounded-full shadow-2xl hover:scale-105 hover:shadow-[0_0_20px_rgba(37,211,102,0.5)] transition-all duration-300"
+  aria-label="Contact us on WhatsApp"
+>
+  <MessageCircle className="w-6 h-6" />
+  <span className="font-bold text-sm hidden sm:block">
+    Chat with us
+  </span>
+</a>
+
 </div>
             </div>
           </div>
