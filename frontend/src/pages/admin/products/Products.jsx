@@ -81,7 +81,7 @@ export default function Products() {
                 {/* INFO */}
                 <div>
                   <h2 className="font-semibold">{p.name}</h2>
-                  <p>{p.price} MAD</p>
+          
                 </div>
 
                 {/* ACTIONS */}

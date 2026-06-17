@@ -14,7 +14,6 @@ export default function Edit() {
   const [form, setForm] = useState({
     name: '',
     description: '',
-    price: '',
     stock: '',
     category_name: '',   // ← category_name, pas category_id
     is_active: true,
@@ -30,7 +29,7 @@ export default function Edit() {
         setForm({
           name: p.name || '',
           description: p.description || '',
-          price: p.price || '',
+        
           stock: p.stock || '',
           category_name: p.category_name || '',  // ← category_name
           is_active: p.is_active ?? true,
@@ -78,7 +77,6 @@ export default function Edit() {
     const formData = new FormData();
     formData.append('name', form.name);
     formData.append('description', form.description);
-    formData.append('price', form.price);
     formData.append('stock', form.stock);
     formData.append('category_name', form.category_name);  // ← category_name
     formData.append('is_active', form.is_active ? 1 : 0);
@@ -170,19 +168,7 @@ export default function Edit() {
 
         {/* Prix + Stock */}
         <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Prix (MAD) *</label>
-            <input
-              type="number"
-              name="price"
-              value={form.price}
-              onChange={handleChange}
-              min="0"
-              step="0.01"
-              className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F97316] ${errors.price ? 'border-red-400' : 'border-gray-300'}`}
-            />
-            {errors.price && <p className="text-red-500 text-xs mt-1">{errors.price[0]}</p>}
-          </div>
+          
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Stock *</label>
             <input

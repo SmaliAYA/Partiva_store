@@ -25,7 +25,6 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name'          => 'required|string|max:255',
             'description'   => 'nullable|string',
-            'price'         => 'required|numeric',
             'stock'         => 'required|integer|min:0',
             'category_name' => 'nullable|string|max:255',
             'image'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -55,7 +54,6 @@ class ProductController extends Controller
             'name'          => $validated['name'],
             'slug'          => Str::slug($validated['name']) . '-' . time(),
             'description'   => $validated['description'] ?? null,
-            'price'         => $validated['price'],
             'stock'         => $validated['stock'],
             'image'         => $imageUrl,
             'category_name' => $validated['category_name'] ?? null,
@@ -83,7 +81,6 @@ class ProductController extends Controller
             'name'          => 'sometimes|string|max:255',
             'slug'          => 'sometimes|string|max:255|unique:products,slug,' . $product->id,
             'description'   => 'sometimes|nullable|string',
-            'price'         => 'sometimes|numeric',
             'stock'         => 'sometimes|integer',
             'image'         => 'sometimes|nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'category_name' => 'sometimes|nullable|string|max:255',

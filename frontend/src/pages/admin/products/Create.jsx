@@ -12,7 +12,6 @@ export default function Create() {
   const [form, setForm] = useState({
     name: '',
     description: '',
-    price: '',
     stock: '',
     category_name: '',
     is_active: true,
@@ -48,7 +47,6 @@ export default function Create() {
     const formData = new FormData();
     formData.append('name', form.name);
     formData.append('description', form.description);
-    formData.append('price', form.price);
     formData.append('stock', form.stock);
     formData.append('category_name', form.category_name);
     formData.append('is_active', form.is_active ? 1 : 0);
@@ -120,14 +118,7 @@ export default function Create() {
         />
 
         {/* PRICE + STOCK */}
-        <input
-          type="number"
-          name="price"
-          placeholder="Prix"
-          value={form.price}
-          onChange={handleChange}
-          className="w-full border p-2"
-        />
+    
 
         <input
           type="number"

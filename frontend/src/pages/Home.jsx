@@ -486,9 +486,9 @@ function Home() {
                         </p>
                       )}
  
-                      {/* Price + Stock */}
+                      {/*Stock */}
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-2xl font-black text-[#F97316]">{product.price} MAD</span>
+        
                         <span className="text-sm text-gray-500 dark:text-gray-400">Stock: {product.stock}</span>
                       </div>
  
