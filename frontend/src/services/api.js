@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:8000/api';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
 function getToken() {
   return localStorage.getItem('token');
@@ -35,5 +35,4 @@ export const createProduct = (formData) => request('POST', '/products', formData
 export const updateProduct = (id, formData) => request('POST', `/products/${id}?_method=PUT`, formData, true);
 export const deleteProduct = (id) => request('DELETE', `/products/${id}`);
 
-// Categories
-export const getCategories = () => request('GET', '/categories');
+
