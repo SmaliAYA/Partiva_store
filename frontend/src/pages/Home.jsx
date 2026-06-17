@@ -121,12 +121,12 @@ function Home() {
   }, []);
  
   // Dynamically build categories from API data
-  const categories = ['All', ...new Set(products.map(p => p.category?.name).filter(Boolean))];
+  const categories = ['All', ...new Set(products.map(p => p.category_name).filter(Boolean))];
  
   const filteredProducts = products.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (p.description && p.description.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesCategory = activeCategory === 'All' || p.category?.name === activeCategory;
+    const matchesCategory = activeCategory === 'All' || p.category_name === activeCategory;
     return matchesSearch && matchesCategory;
   });
  
@@ -475,9 +475,9 @@ function Home() {
                       </div>
  
                       {/* Category */}
-                      {product.category?.name && (
+                      {product.category_name && (
                         <p className="text-sm text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">
-                          {product.category.name}
+                          {product.category_name}
                         </p>
                       )}
  
@@ -624,8 +624,7 @@ function Home() {
               <h4 className="font-black mb-4 uppercase tracking-wider text-sm">Contact</h4>
               <ul className="space-y-2 text-sm text-white/80">
                 <li>Casablanca, Morocco</li>
-                <li>contact@partiva.ma</li>
-                <li>+212 5XX-XXX-XXX</li>
+                <li>+212 671423516</li>
               </ul>
  <div className="flex gap-3 mt-6">
 <a
@@ -651,35 +650,6 @@ function Home() {
           </div>
         </div>
       </footer>
- <a href="https://wa.me/212671423516"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="fixed bottom-8 left-8 z-50 flex items-center gap-3 bg-[#25D366] text-white px-5 py-3 rounded-full shadow-2xl hover:scale-105 hover:shadow-[0_0_20px_rgba(37,211,102,0.5)] transition-all duration-300"
-  aria-label="Contact us on WhatsApp"
->
-  <MessageCircle className="w-6 h-6" />
-  <span className="font-bold text-sm hidden sm:block">Chat with us</span>
-</a>
-      <style>{`
-        @keyframes loom-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-loom-scroll {
-          animation: loom-scroll 30s linear infinite;
-        }
-        .animate-loom-scroll:hover {
-          animation-play-state: paused;
-        }
-        @keyframes pulse-ring {
-          0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
-          50% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
-        }
-        .animate-pulse-ring {
-          animation: pulse-ring 2s infinite;
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getProduct, updateProduct, getCategories } from '../../../services/api';
+import { getProduct, updateProduct } from '../../../services/api';
 import { Upload, ArrowLeft, X } from 'lucide-react';
 
 export default function Edit() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [errors, setErrors] = useState({});
@@ -17,7 +16,7 @@ export default function Edit() {
     description: '',
     price: '',
     stock: '',
-    category_id: '',
+    category_name: '',   // ← category_name, pas category_id
     is_active: true,
     image: null,
   });
@@ -25,33 +24,27 @@ export default function Edit() {
   useEffect(() => {
     async function load() {
       try {
-        const [productRes, categoriesRes] = await Promise.all([
-          getProduct(id),
-          getCategories(),
-        ]);
-        console.log('product:', productRes);      // ✅ ajoute
-      console.log('categories:', categoriesRes); // ✅ ajoute
-
+        const productRes = await getProduct(id);  // ← plus de getCategories()
         const p = productRes.data;
+
         setForm({
           name: p.name || '',
           description: p.description || '',
           price: p.price || '',
           stock: p.stock || '',
-          category_id: p.category_id || '',
+          category_name: p.category_name || '',  // ← category_name
           is_active: p.is_active ?? true,
           image: null,
         });
         setPreview(p.image || null);
-        setCategories(categoriesRes.data || categoriesRes || []);
       } catch (err) {
-      console.log('ERREUR:', err); // ✅ ajoute
-      alert('Erreur lors du chargement du produit.');
-      navigate('/admin/products');
-    } finally {
-      setFetching(false);
+        console.log('ERREUR:', err);
+        alert('Erreur lors du chargement du produit.');
+        navigate('/admin/products');
+      } finally {
+        setFetching(false);
+      }
     }
-  }
     load();
   }, [id]);
 
@@ -87,7 +80,7 @@ export default function Edit() {
     formData.append('description', form.description);
     formData.append('price', form.price);
     formData.append('stock', form.stock);
-    formData.append('category_id', form.category_id);
+    formData.append('category_name', form.category_name);  // ← category_name
     formData.append('is_active', form.is_active ? 1 : 0);
     if (form.image) formData.append('image', form.image);
 
@@ -204,21 +197,18 @@ export default function Edit() {
           </div>
         </div>
 
-        {/* Catégorie */}
+        {/* Catégorie — input texte libre */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Catégorie *</label>
-          <select
-            name="category_id"
-            value={form.category_id}
+          <input
+            type="text"
+            name="category_name"
+            value={form.category_name}
             onChange={handleChange}
-            className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F97316] ${errors.category_id ? 'border-red-400' : 'border-gray-300'}`}
-          >
-            <option value="">Sélectionner une catégorie</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>{cat.name}</option>
-            ))}
-          </select>
-          {errors.category_id && <p className="text-red-500 text-xs mt-1">{errors.category_id[0]}</p>}
+            placeholder="Ex: Roulements, Courroies, Joints..."
+            className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F97316] ${errors.category_name ? 'border-red-400' : 'border-gray-300'}`}
+          />
+          {errors.category_name && <p className="text-red-500 text-xs mt-1">{errors.category_name[0]}</p>}
         </div>
 
         {/* Actif */}
