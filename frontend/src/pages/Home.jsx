@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import {
   Megaphone, ArrowRight, Globe, Moon, Sun, Hexagon, ChevronRight,
   Package, Factory, Clock, Settings, Zap, Target, CheckCircle, Handshake,
-  Shield, Wrench, Monitor, Search, Plus, Truck, FlaskConical,
+  Shield, Wrench, Monitor, Search,  Truck, FlaskConical,
   FileText, Rocket,  MessageCircle
 } from 'lucide-react';
 
@@ -55,7 +55,7 @@ function Home() {
   const [productsError, setProductsError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
-  const [rfqItems, setRfqItems] = useState([]);
+ 
  
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -130,9 +130,7 @@ function Home() {
     return matchesSearch && matchesCategory;
   });
  
-  const toggleRfq = (id) => {
-    setRfqItems(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
-  };
+  
  
   const aboutFeatures = [
     { icon: Zap, title: 'Minimized Downtime', description: 'Fast turnaround times to minimize your production downtime' },
@@ -495,13 +493,7 @@ function Home() {
                       </div>
  
                       {/* RFQ button */}
-                      <Button
-                        onClick={() => toggleRfq(product.id)}
-                        className={`w-full ${rfqItems.includes(product.id) ? 'bg-green-500 hover:bg-green-600' : 'bg-[#F97316] hover:bg-[#ea640c]'} text-white`}
-                      >
-                        <Plus className="w-4 h-4 mr-2" />
-                        {rfqItems.includes(product.id) ? 'Added to RFQ' : 'Add to RFQ'}
-                      </Button>
+                   
                     </div>
                   </motion.div>
                 ))}
@@ -509,15 +501,8 @@ function Home() {
             )}
  
             {/* RFQ floating badge */}
-            {rfqItems.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="fixed bottom-8 right-8 bg-[#F97316] text-white px-6 py-4 rounded-full shadow-2xl z-50"
-              >
-                <span className="font-black">{rfqItems.length} items in RFQ</span>
-              </motion.div>
-            )}
+            
+           
           </div>
         </section>
  
