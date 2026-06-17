@@ -29,7 +29,7 @@ const loomBrands = [
  
 function Home() {
   const [isDark, setIsDark] = useState(false);
-  const [language, setLanguage] = useState('EN');
+ 
  
   // Navbar state
   const [isScrolled, setIsScrolled] = useState(false);
@@ -214,10 +214,10 @@ function Home() {
               ))}
             </div>
             <div className="flex items-center gap-4">
-              <button onClick={() => setLanguage(language === 'EN' ? 'FR' : 'EN')} className="flex items-center gap-1 text-sm text-[#1C1C1C] dark:text-white hover:text-[#F97316] transition-colors">
-                <Globe className="w-4 h-4" />
-                <span className="uppercase">{language}</span>
-              </button>
+             <div className="flex items-center gap-1 text-sm text-[#1C1C1C] dark:text-white">
+  <Globe className="w-4 h-4" />
+  <span className="uppercase">ENG</span>
+</div>
               <button onClick={() => setIsDark(!isDark)} className="text-[#1C1C1C] dark:text-white hover:text-[#F97316] transition-colors">
                 {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
