@@ -3,7 +3,7 @@ import {
   Megaphone, ArrowRight, Globe, Moon, Sun, Hexagon, ChevronRight,
   Package, Factory, Clock, Settings, Zap, Target, CheckCircle, Handshake,
   Shield, Wrench, Monitor, Search,  Truck, FlaskConical,
-  FileText, Rocket,  MessageCircle
+  FileText, Rocket
 } from 'lucide-react';
 
 import { motion } from "framer-motion";
@@ -11,6 +11,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Badge } from "../components/ui/badge";
 import { Progress } from "../components/ui/progress";
+import { FaWhatsapp } from "react-icons/fa";
 import ImageWithFallback from "../components/figma/ImageWithFallback";
 // En haut du fichier avec les autres imports
 import { getProducts } from '../services/api';
@@ -223,9 +224,25 @@ function Home() {
         <button onClick={() => setIsDark(!isDark)} className="text-[#1C1C1C] dark:text-white hover:text-[#F97316] transition-colors">
           {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </button>
-        <Button onClick={() => scrollToSection('catalogue')} className="bg-[#F97316] hover:bg-[#ea640c] text-white">
-          View Catalogue <ArrowRight className="w-4 h-4 ml-2" />
-        </Button>
+       <div className="flex items-center gap-3">
+  <Button
+    onClick={() => scrollToSection('catalogue')}
+    className="bg-[#1B3A6B] hover:bg-[#153157] text-white"
+  >
+    View Catalogue <ArrowRight className="w-4 h-4 ml-2" />
+  </Button>
+
+  <a
+    href="https://wa.me/212671423516?text=Hello%20Partiva,%20I%20would%20like%20to%20order%20a%20product."
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button className="bg-[#F97316] hover:bg-[#ea640c] text-white">
+      <FaWhatsapp className="w-4 h-4 mr-2" />
+      Order Now
+    </Button>
+  </a>
+</div>
       </div>
 
       {/* Mobile right — burger + dark mode */}
@@ -261,9 +278,29 @@ function Home() {
               {id}
             </button>
           ))}
-          <Button onClick={() => { scrollToSection('catalogue'); setMenuOpen(false); }} className="bg-[#F97316] hover:bg-[#ea640c] text-white w-full mt-2">
-            View Catalogue <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
+         <div className="flex flex-col gap-2 mt-2">
+  <Button
+    onClick={() => {
+      scrollToSection('catalogue');
+      setMenuOpen(false);
+    }}
+    className="bg-[#1B3A6B] hover:bg-[#153157] text-white w-full"
+  >
+    View Catalogue <ArrowRight className="w-4 h-4 ml-2" />
+  </Button>
+
+  <a
+    href="https://wa.me/212671423516?text=Hello%20Partiva,%20I%20would%20like%20to%20order%20a%20product."
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-full"
+  >
+    <Button className="bg-[#F97316] hover:bg-[#ea640c] text-white w-full">
+      <FaWhatsapp className="w-4 h-4 mr-2" />
+      Order on WhatsApp
+    </Button>
+  </a>
+</div>
         </div>
       </div>
     )}
@@ -669,9 +706,9 @@ function Home() {
         className="fixed bottom-4 left-4 sm:bottom-8 sm:left-8 z-50 flex items-center gap-2 sm:gap-3 bg-[#25D366] text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-full shadow-2xl hover:scale-105 hover:shadow-[0_0_20px_rgba(37,211,102,0.5)] transition-all duration-300"
         aria-label="Contact us on WhatsApp"
       >
-        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
-        <span className="font-bold text-sm hidden sm:block">
-          Chat with us
+        <FaWhatsapp className="w-5 h-5 sm:w-6 sm:h-6" />
+        <span className="font-bold text-sm  sm:block">
+          Order Now
         </span>
       </a>
 
