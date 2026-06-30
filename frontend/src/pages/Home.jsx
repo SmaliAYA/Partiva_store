@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import {
-  Megaphone, ArrowRight, Globe, Moon, Sun, Hexagon, ChevronRight,
+  Megaphone, ArrowRight, Moon, Sun, Hexagon, ChevronRight,
   Package, Factory, Clock, Settings, Zap, Target, CheckCircle, Handshake,
   Shield, Wrench, Monitor, Search,  Truck, FlaskConical,
   FileText, Rocket
@@ -218,8 +218,7 @@ function Home() {
       {/* Desktop right */}
       <div className="hidden md:flex items-center gap-4">
         <div className="flex items-center gap-1 text-sm text-[#1C1C1C] dark:text-white">
-          <Globe className="w-4 h-4" />
-          <span className="uppercase">ENG</span>
+         
         </div>
         <button onClick={() => setIsDark(!isDark)} className="text-[#1C1C1C] dark:text-white hover:text-[#F97316] transition-colors">
           {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
