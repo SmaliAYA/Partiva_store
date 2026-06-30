@@ -686,6 +686,7 @@ function Home() {
               <h4 className="font-black mb-4 uppercase tracking-wider text-sm">Contact</h4>
               <ul className="space-y-2 text-sm text-white/80">
                 <li>Casablanca, Morocco</li>
+                <li>contact@partiva.ma</li>
                 <li>+212 671423516</li>
               </ul>
             </div>
